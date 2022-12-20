@@ -1,0 +1,713 @@
+/*TODO: set container div, set size as screen resolution, then everything else as %s OF that div (so therefore never change size on web page when increase/decrease size... hide overflow?)
+Actually, just copy how heardle 2000s does it
+also, STOP UING REM (this is just pixels, as 1rem = 16 px) - not relative like %
+*/
+
+:root{
+  --title-margin: 3rem;
+  --button-margin: 2rem;
+  --custom-black: #252525;
+  --custom-dark-white: rgb(227, 227, 227);
+  --custom-accent-color: rgb(103,52,154); 
+  
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--custom-black);
+  color: var(--custom-dark-white);
+}
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.invisible{
+  visibility: hidden;
+}
+
+button{
+  -webkit-tap-highlight-color: transparent;
+  cursor:pointer
+}
+
+button:active{
+  transform: scale(0.95);
+  transition: 0.1s;
+}
+
+#App{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#header-div {
+  padding: 0%;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: solid var(--custom-dark-white) 1px;
+}
+
+#header-div > p{
+  font-size: 1.875rem;
+  font-weight: bold;
+  letter-spacing: 0.2em ;
+  text-align: center;
+  margin: 1%;
+  max-width: 45%;
+}
+
+.header-btn-container{
+  display: flex;
+  flex: 1 1 auto;
+  max-width: 100px;
+  justify-content: space-around;
+}
+
+
+.header-btn-container > button {
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 50%;
+  height: 1.875rem;
+  width: 1.875rem;
+  padding: 0%;
+  background-color: var(--custom-black);
+}
+
+
+.header-btn-container > button > *{
+  height: 100%;
+  width: 100%;
+  color: var(--custom-dark-white);
+  background-color: var(--custom-black);
+}
+
+#guess-song-container{
+  width: 100vw;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 auto;
+
+}
+
+.bars{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bars> .guess-box{
+  display: flex;
+  align-items: center;
+  width: 80%;
+  max-width: 400px;
+  height:2.5rem;
+  margin-top: 3%;
+  border: solid var(--custom-accent-color) 1px;
+  font-size: 1rem;
+  letter-spacing: 0.3rem;
+  font-weight: bold;
+}
+
+.bars > .guess-box >p{
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
+
+.bars> .guess-box.active {
+  border: solid var(--custom-dark-white) 1px;
+}
+
+#square-x-icon{
+  height: 1.8rem;
+  width: 1.8rem;
+  color: var(--custom-black);
+  background-color: var(--custom-accent-color);
+  border-radius: 6px;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+#square-x-icon.incorrect{
+  background-color: red;
+}
+
+
+#progress{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 90%;
+  max-width: 500px;
+}
+
+#progress-bar{
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  height: 1rem;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  
+}
+#progress-bar > #contents {
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  outline: solid var(--custom-dark-white) 1px;
+}
+
+#grey-bar{
+  margin-top: 20%;
+  margin-bottom: -1rem;
+  height: 1rem;
+  background-color: rgb(94, 94, 94);
+  position: relative; 
+}
+
+#progress-color{
+  height: 1rem;
+  background-color: var(--custom-accent-color);
+  margin-bottom: -1rem;
+  transition: all 0.1s;
+  z-index: 0;
+  position: relative;
+}
+
+#progress-bar > #contents > .partial-bar{
+  
+  flex-grow: 1;
+  outline: solid var(--custom-dark-white) 1px;
+  margin: 0;
+  z-index: 10;
+  position: relative;
+}
+
+
+#progress-bar > #contents > #p0{
+  width: 6.25%; 
+}
+
+#progress-bar > #contents > #p1{
+  width: 6.25%;
+}
+#progress-bar > #contents > #p2{
+  width: 12.5%;
+}
+
+#progress-bar > #contents > #p3{
+  width: 18.75%;
+}
+
+#progress-bar > #contents > #p4{
+  width: 25%;
+}
+
+#progress-bar > #contents > #p5{
+  width: 31.25%;
+}
+
+#progress > #timers{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -1rem;
+}
+
+#progress > #timers > p{
+  margin-top: 3%;
+  margin-bottom: 0;
+}
+
+#play-icon{
+  height: 100%;
+  width: 100%;
+  color: var(--custom-dark-white);
+}
+
+.play-btn{
+  margin-bottom: 1rem;
+  height: 25%;
+  width: 25%;
+  max-height: 4rem;
+  max-width: 4rem;
+  min-height: 1rem;
+  min-width: 1rem;
+  background-color: rgb(0, 0, 0,0);
+  border: 0;
+}
+
+
+#guess-container{
+  width: 60%;
+  position: relative;
+  min-height: 2rem;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  border: solid var(--custom-accent-color) 1px;
+  width: 80%;
+  max-width: 400px;
+  
+}
+
+#song-matches{
+  width: 100%;
+  position: absolute;
+  margin-bottom: 2rem;
+  border: solid var(--custom-dark-white) 1px;
+  background-color: var(--custom-black);
+  z-index: 10;
+}
+
+.song-match{
+  border-bottom: solid var(--custom-dark-white) 1px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.song-match:hover{
+  background-color: rgb(66, 66, 66)
+}
+
+#search-overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#search-songs{
+  background-color: rgba(255, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;  
+}
+
+#searchbar{
+  background-color: rgb(0,0,0,0);
+  border: 0;
+  color: var(--custom-dark-white);
+  font-size: 1rem;
+  height: 70%;
+  flex: 1 1 auto;
+  margin: 5px;
+}
+
+#searchbar:focus{
+  outline-width: 0;
+}
+
+#search-icon{
+  margin: 5px;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+
+#submit-btns-container{
+  display: flex;
+  width: 80%;
+  max-width: 400px;
+  height: 4rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#submit-btns-container>button{
+  width: 7rem;
+  height: 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--custom-dark-white);
+  background-color: var(--custom-accent-color);
+  padding: 5px;
+  border: 0;
+  border-radius: 2px;
+  letter-spacing: 0.1rem;
+
+}
+
+.popup{
+  position: fixed;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  border-radius: 8px;
+  z-index: 10;
+  background-color: var(--custom-black);
+  height: 400px;
+  width: 450px;
+  max-width: 80%;
+  z-index: 10;
+  transform: translate(-50%, -50%) scale(1);
+  align-items: center;
+  flex-direction: column;
+  border: solid var(--custom-dark-white) 1px;
+  letter-spacing: 0.1rem;
+}
+
+.popup>h1{
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.popup#share{
+  justify-content: flex-start;
+}
+.popup#share > h1{
+  margin-top: 10%;
+  margin-bottom: 15%;
+}
+
+
+
+.popup > p{
+  font-size: 1.3rem;
+  word-spacing: 0.25em;
+  line-height: 1.4em;
+  text-align: center;
+  margin-top: -20%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.popup > #close {
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  height: 1.3rem;
+  width: 1.3rem;
+  cursor: pointer;
+}
+
+
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .7);
+  pointer-events: none;
+  opacity: 1;
+  pointer-events: all;
+  z-index: 9;
+}
+
+.popup > .htp-list{
+  text-align: center;
+  display: flex;
+  align-items:  center;
+  justify-content: space-around;
+}
+
+.popup > .htp-list > *{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.popup > .htp-list > .icon{
+  height: 50px;
+  width: 50px;
+  margin-left: 1.6rem;
+}
+
+#about-pop >p{
+  margin: 5%;
+}
+
+#barchart{
+  width: 80%;
+  height: 40%;
+}
+
+#barchart-bars-container{
+  width: 100%;
+  height: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.barchart-bar{
+  background-color: var(--custom-accent-color);
+  margin:0 2%;
+  width: 20%;
+  border-radius: 3px;
+  text-align: center;
+  padding-top: 2%;
+}
+
+#barchart-labels-container{
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.barchart-label{
+  width: 20%;
+  margin: 0 2%;
+  text-align: center;
+  color: var(--custom-dark-white);
+}
+
+#specific-stats{
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#nums-stats{
+  width: 100%;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#nums-stats > p{
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 30%;
+  margin: 0 2%;
+  text-align: center;
+}
+
+#nums-stats-labels{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#nums-stats-labels > p{
+  font-size: 1rem;
+  width: 30%;
+  margin: 0 2%;
+  text-align: center;
+  color: var(--custom-accent-color);
+}
+
+#songpage-container{
+  width: 100vw;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cp-link{
+  margin-top: 2rem;
+  width: 8rem;
+  height: 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--custom-dark-white);
+  background-color: var(--custom-accent-color);
+  padding: 5px;
+  border: 0;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cp-link>*{
+  margin-right: 10%; 
+}
+
+#copyTA{
+  position: absolute;
+  z-index: 0;
+}
+
+#song-box{
+  margin-top: 5%;
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--custom-accent-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#img-text-container{
+  display: flex;
+  width: 65%;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
+}
+
+#thumbnail-img{
+  width: 128px;
+  height: 72px;
+  margin: 2%;
+}
+
+#yt-icon{
+  height: 48px;
+  width: 48px;
+  margin: 2%;
+  margin-right: 5%;
+}
+
+#name-and-artist{
+  margin: 2%;
+}
+
+#name-and-artist > p{
+  margin-top: 5%;
+  margin-bottom: 0;
+  letter-spacing: 0.1rem;
+}
+
+#song-artist{
+  font-size: 0.8rem;
+}
+
+#songpage-container > h1{
+  margin-top: 15%;
+  letter-spacing: 0.1rem;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+#songpage-container > h2{
+  font-size: 1rem;  
+  letter-spacing: 0.1rem;
+  width: 70%;
+  text-align: center;
+  line-height: 1.5rem;
+}
+
+#dashes-container{
+  display: flex;
+  height: 0.3rem;
+  justify-content: space-between;
+}
+
+.dash{
+  background-color: green;
+  width: 1rem;
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 1px;
+  background-color: var(--custom-accent-color);
+  
+}
+
+.music-bars{
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  border: solid white 1px;
+  background-color: var(--custom-dark-white);
+
+}
+
+.stroke:nth-child(1){
+   animation-delay: 0s; 
+}
+.stroke:nth-child(2){
+  animation-delay: 0.3s; 
+}
+.stroke:nth-child(3){
+  animation-delay: 0.6s; 
+}
+
+#linked-in{
+  width: 95px;
+}
+
+#linked-in > a> p{
+  font-size: 0.8rem
+}
+
+#linked-in > a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--custom-dark-white);
+}
+
+#linked-in > a> img{
+  width: 1rem;
+  white-space: nowrap;
+}
+
+#loader-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  border: 16px solid var(--custom-dark-white); /* Light grey */
+  border-top: 16px solid var(--custom-accent-color); /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1.5s linear infinite;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
