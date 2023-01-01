@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.6682a76f.css",
-    "main.js": "/static/js/main.b060e6f0.js",
+    "main.js": "/static/js/main.cab99efc.js",
     "static/media/songs.txt": "/static/media/songs.e34a9045ffb7838dcc79.txt",
     "static/media/days-songs.txt": "/static/media/days-songs.fd7c6370b594657c2c0c.txt",
     "index.html": "/index.html",
     "main.6682a76f.css.map": "/static/css/main.6682a76f.css.map",
-    "main.b060e6f0.js.map": "/static/js/main.b060e6f0.js.map"
+    "main.cab99efc.js.map": "/static/js/main.cab99efc.js.map"
   },
   "entrypoints": [
     "static/css/main.6682a76f.css",
-    "static/js/main.b060e6f0.js"
+    "static/js/main.cab99efc.js"
   ]
 }
