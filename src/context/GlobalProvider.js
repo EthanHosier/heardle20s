@@ -9,12 +9,13 @@ export const GlobalProvider = ({children}) =>{
     const [isPlaying, setIsPlaying] = useState(false);
     const [duration, setDuration] = useState(0)
     const [correctSong, setCorrectSong] = useState("") 
+    const [ytReady, setYtReady] = useState(false);
 
     const playerRef = useRef(); 
 
     return(
         
-        <GlobalContext.Provider value={{correctSong, setCorrectSong,hasPlayedToday,setHasPlayedToday,isCorrect,setIsCorrect,isPlaying,setIsPlaying, playerRef, duration, setDuration}}>
+        <GlobalContext.Provider value={{correctSong, setCorrectSong,hasPlayedToday,setHasPlayedToday,isCorrect,setIsCorrect,isPlaying,setIsPlaying, playerRef, duration, setDuration, ytReady, setYtReady}}>
             {children}
         </GlobalContext.Provider>
         

@@ -23,9 +23,8 @@ const OPTS = {width: "0", height:"0"}
 
 function App() {
 
-  const {setHasPlayedToday,setIsCorrect,playerRef, correctSong, setCorrectSong, setIsPlaying, setDuration,duration} = useGlobal();
+  const {setHasPlayedToday,setIsCorrect,playerRef, correctSong, setCorrectSong, setIsPlaying, setDuration,duration, ytReady, setYtReady} = useGlobal();
   const [t,setT] = useState(false)
-  const [ytReady, setYtReady] = useState(false);
 
 
   const getCorrectSongIndex = () =>{
@@ -110,6 +109,7 @@ function App() {
     durationPromise.then((d)=>{
       setDuration(Math.floor(d - correctSong.offset))
       setYtReady(true)
+      console.log("ready")
     }
     )})();
    
@@ -121,10 +121,8 @@ function App() {
     {correctSong? 
     <div id="App">
       <YouTube opts={OPTS} onReady={onReady} videoId={correctSong.id} ref={playerRef} onStateChange={onStateChange} id="yt player" />
-      {!ytReady
-      ?<div id="loader-container"><div className="loader"></div></div>
-      : <Layout />
-      }  
+       <Layout />
+       
     </div>
     
     : <></>

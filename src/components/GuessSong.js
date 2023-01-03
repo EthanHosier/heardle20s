@@ -11,7 +11,7 @@ const NUM_OF_BARS = 6
 const CUSTOM_WHITE = "rgb(227, 227, 227)"
 const GuessSong = () => {
 
-  const {correctSong, setIsCorrect, setHasPlayedToday, isPlaying,setIsPlaying} = useGlobal();
+  const {correctSong, setIsCorrect, setHasPlayedToday, isPlaying,setIsPlaying, ytReady} = useGlobal();
 
   const [songs, setSongs] = useState([])
   const [guesses, setGuesses] = useState(new Array(NUM_OF_BARS));
@@ -143,6 +143,7 @@ const GuessSong = () => {
             <FontAwesomeIcon id="search-icon" icon={faMagnifyingGlass} />
           </label>
           <input
+          disabled={!ytReady}
           type="text"
           id="searchbar"
           ref={searchRef}
@@ -156,8 +157,8 @@ const GuessSong = () => {
 
 
       <div id="submit-btns-container">
-        <button id="skip" onClick={onSkip}>Skip {guessNum <5 && `(+${guessNum+1}s)`}</button>
-        <button id="submit" onClick = {onSubmit} disabled={searchRef?.current?.value ==""}>Submit</button>
+        <button id="skip" onClick={onSkip} disabled={!ytReady} >Skip {guessNum <5 && `(+${guessNum+1}s)`}</button>
+        <button id="submit" onClick = {onSubmit} disabled={searchRef?.current?.value =="" || !ytReady}>Submit</button>
       </div>
 
     </div>

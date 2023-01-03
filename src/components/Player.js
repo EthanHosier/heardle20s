@@ -8,7 +8,7 @@ const Player = ({guessNum}) => {
   const [timeoutID, setTimeoutID] = useState()
   const [timeStarted, setTimeStarted] = useState(new Date())
 
-  const {correctSong, isPlaying,setIsPlaying,playerRef, setHasPlayedToday, hasPlayedToday, duration} = useGlobal();
+  const {correctSong, isPlaying,setIsPlaying,playerRef, setHasPlayedToday, hasPlayedToday, duration,ytReady} = useGlobal();
 
   //handles song having been played for allocated time
   
@@ -45,6 +45,7 @@ const Player = ({guessNum}) => {
   }
   
   useEffect(()=>{
+    if(!ytReady) return;
     playerRef.current.internalPlayer.setVolume(100);
     playerRef.current.internalPlayer.seekTo(correctSong.offset);
 
@@ -53,7 +54,7 @@ const Player = ({guessNum}) => {
     return () => {
       playerRef.current.internalPlayer.seekTo(correctSong.offset)
     }
-  },[])
+  },[ytReady])
   
   useEffect(() =>{
     if (!isPlaying) {
@@ -89,9 +90,15 @@ const Player = ({guessNum}) => {
   return (
     <>
       <ProgressBar isPlaying={isPlaying} guessNum={guessNum} duration={guessNum === undefined? duration: 16 }/>
+     
+     {ytReady ?
       <button className="play-btn">
         <FontAwesomeIcon icon = {isPlaying? faCircleStop : faCirclePlay} id="play-icon" onClick={onPlayClicked}/>
       </button>
+      
+    :
+    <div className="loader"/>
+    }
     </>
     )
 }

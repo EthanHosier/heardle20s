@@ -271,6 +271,30 @@ main{
   border: 0;
 }
 
+#loader-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  border: 16px solid var(--custom-dark-white); /* Light grey */
+  border-top: 16px solid var(--custom-accent-color); /* Blue */
+  border-radius: 50%;
+  height: 25%;
+  width: 25%;
+  max-height: 4rem;
+  max-width: 4rem;
+  min-height: 1rem;
+  min-width: 1rem;
+
+  animation: spin 1.5s linear infinite;
+  margin-bottom: 1rem;
+}
 
 #guess-container{
   width: 60%;
@@ -281,7 +305,7 @@ main{
   border: solid var(--custom-accent-color) 1px;
   width: 80%;
   max-width: 400px;
-  
+
 }
 
 #song-matches{
@@ -328,7 +352,7 @@ main{
   font-size: 1rem;
   height: 70%;
   flex: 1 1 auto;
-  margin: 5px;
+  margin: 6px;
 }
 
 #searchbar:focus{
@@ -535,6 +559,7 @@ main{
 
 #songpage-container{
   width: 100vw;
+
   max-width: 800px;
   display: flex;
   flex-direction: column;
@@ -691,22 +716,7 @@ main{
   white-space: nowrap;
 }
 
-#loader-container{
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.loader {
-  border: 16px solid var(--custom-dark-white); /* Light grey */
-  border-top: 16px solid var(--custom-accent-color); /* Blue */
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1.5s linear infinite;
-}
 
 
 @keyframes spin {
