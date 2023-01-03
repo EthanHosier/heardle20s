@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import useGlobal from '../hooks/useGlobal'
+import AmazonAdPopup from './AmazonAdPopup';
 import Player from './Player';
 import ShareButton from './ShareButton';
 
@@ -8,6 +9,7 @@ const CORRECT_H2 = "You guessed today's Heardle 20s. Come back tomorrow to keep 
 const INCORRECT_H1 = "Better luck next time!"
 const INCORRECT_H2 = "You didn't get today's Heardle 20s, but try again tomorrow!"
 const SongPage = () => {
+    const [showAdPopup, setShowAdPopup] = useState(true)
     const {correctSong, isCorrect} = useGlobal();
     
     const imgURL = `https://img.youtube.com/vi/${correctSong.id}/maxresdefault.jpg`
@@ -24,6 +26,7 @@ const SongPage = () => {
    
     return (
         <div id="songpage-container">
+            {/*REMOVE FALSE FOR AMAZON POPUP*/false && <AmazonAdPopup setShowAdPopup={setShowAdPopup}/>}
             <div id="song-box" onClick={() => openInNewTab(`https://youtu.be/${correctSong.id}&t=${Math.floor(correctSong.offset)}`)}>
                 <div id="img-text-container">    
                     <img src={imgURL} id="thumbnail-img"/>
