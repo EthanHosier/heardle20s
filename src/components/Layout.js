@@ -18,7 +18,7 @@ const Layout = () => {
         <Outlet />
         <LinkedIn/>
 
-        {/*<p id="sorry-for-ads">Sorry about the ads. I need to pay server costs :)</p>*/}
+        <p id="sorry-for-ads">Sorry about the ads. I need to pay server costs :)</p>
     </main>
   )
 }

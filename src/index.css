@@ -736,17 +736,21 @@ main{
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  border: 20px var(--custom-accent-color);
+  min-height: 600px;
+  min-width: 160px;
 
 }
 
 #amazon-ad-popup>#close{
   margin-bottom: -1rem;
-  margin-top: 3px;
-  margin-right: 3px;
+  margin-top: 10px;
+  margin-right: 10px;
   z-index: 10;
   cursor: pointer;
-  height: 0.8rem;
+  height: 0.6rem;
   color: var(--custom-dark-white);
+  background-color: black;
 }
 
 .ad-container{
@@ -754,6 +758,7 @@ main{
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  
 }
 
 .ad-container>*{
@@ -765,3 +770,4 @@ main{
   margin-top: 0;
 
 }
+

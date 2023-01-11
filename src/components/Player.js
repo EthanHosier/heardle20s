@@ -49,7 +49,7 @@ const Player = ({guessNum}) => {
     playerRef.current.internalPlayer.setVolume(100);
     playerRef.current.internalPlayer.seekTo(correctSong.offset);
 
-    //if(hasPlayedToday) playerRef.current.internalPlayer.playVideo(); --uncomment this to autoplay on song page
+    if(hasPlayedToday) playerRef.current.internalPlayer.playVideo(); 
 
     return () => {
       playerRef.current.internalPlayer.seekTo(correctSong.offset)

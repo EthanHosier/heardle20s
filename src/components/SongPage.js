@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useGlobal from '../hooks/useGlobal'
-import AmazonAdPopup from './AmazonAdPopup';
+import AdserraAdPopup from './AdserraAdPopup';
 import Player from './Player';
 import ShareButton from './ShareButton';
 
@@ -26,7 +26,11 @@ const SongPage = () => {
    
     return (
         <div id="songpage-container">
-            {/*REMOVE FALSE FOR AMAZON POPUP*/false && <AmazonAdPopup setShowAdPopup={setShowAdPopup}/>}
+            {showAdPopup && 
+            <>
+                <AdserraAdPopup setShowAdPopup={setShowAdPopup}/>
+                
+            </>}
             <div id="song-box" onClick={() => openInNewTab(`https://youtu.be/${correctSong.id}&t=${Math.floor(correctSong.offset)}`)}>
                 <div id="img-text-container">    
                     <img src={imgURL} id="thumbnail-img"/>
