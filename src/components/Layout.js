@@ -4,21 +4,23 @@ import GuessSong from './GuessSong'
 import Header from './Header'
 import useGlobal from '../hooks/useGlobal'
 import SongPage from "./SongPage"
-import {LinkedIn } from './LinkedIn'
+import { LinkedIn } from './LinkedIn'
+import AdserraAdPopup from './AdserraAdPopup'
 
 const Layout = () => {
-  const {hasPlayedToday} = useGlobal();
+  const { hasPlayedToday } = useGlobal(false);
 
   return (
     <main className='App'>
-        <Header />
-        {hasPlayedToday 
-        ? <SongPage/>
-        : <GuessSong /> }
-        <Outlet />
-        <LinkedIn/>
+      <Header />
+      {hasPlayedToday
+        ? <SongPage />
+        : <GuessSong />}
+      <Outlet />
+      <LinkedIn />
+      <p id="sorry-for-ads">Sorry about the ads. I need to pay server costs :)</p>
+      <AdserraAdPopup/>
 
-        <p id="sorry-for-ads">Sorry about the ads. I need to pay server costs :)</p>
     </main>
   )
 }

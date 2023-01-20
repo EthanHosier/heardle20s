@@ -5,7 +5,7 @@ import { useState, useRef } from 'react';
 import Player from "./Player"
 import raw from '../rsc/songs.txt';
 import useGlobal from '../hooks/useGlobal';
-
+import AdserraAdPopup from './AdserraAdPopup';
 
 const NUM_OF_BARS = 6
 const CUSTOM_WHITE = "rgb(227, 227, 227)"

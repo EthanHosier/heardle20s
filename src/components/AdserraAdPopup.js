@@ -1,17 +1,16 @@
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, {useEffect, useRef} from 'react'
+import useGlobal from '../hooks/useGlobal';
 
-export const AdserraAdPopup = ({setShowAdPopup}) => {
+export const AdserraAdPopup = () => {
 
- 
-
-
+  const {showAdsterraAdPopup ,setShowAdsterraAdPopup} = useGlobal();
 
   return (
-    <div id="amazon-ad-popup">
+    <div id="amazon-ad-popup" style={showAdsterraAdPopup? {} : {top: -500} }>
          
-        <FontAwesomeIcon icon={faX} id="close" className='text-accent' onClick={() =>setShowAdPopup(false)}/>
+        <FontAwesomeIcon icon={faX} id="close" className='text-accent' onClick={() =>setShowAdsterraAdPopup(false)}/>
         
         <div className='ad-container'>
           <AdserraAd/>

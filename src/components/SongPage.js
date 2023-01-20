@@ -9,8 +9,7 @@ const CORRECT_H2 = "You guessed today's Heardle 20s. Come back tomorrow to keep 
 const INCORRECT_H1 = "Better luck next time!"
 const INCORRECT_H2 = "You didn't get today's Heardle 20s, but try again tomorrow!"
 const SongPage = () => {
-    const [showAdPopup, setShowAdPopup] = useState(true)
-    const {correctSong, isCorrect} = useGlobal();
+    const {correctSong, isCorrect, showAdsterraAdPopup, setShowAdsterraAdPopup} = useGlobal();
     
     const imgURL = `https://img.youtube.com/vi/${correctSong.id}/maxresdefault.jpg`
 
@@ -22,13 +21,14 @@ const SongPage = () => {
     //on mount
     useEffect(() => {
         localStorage.setItem("last-played", new Date());
+        setShowAdsterraAdPopup(true)
     },[])
    
     return (
         <div id="songpage-container">
-            {showAdPopup && 
+            {showAdsterraAdPopup && 
             <>
-                <AdserraAdPopup setShowAdPopup={setShowAdPopup}/>
+                <AdserraAdPopup/>
                 
             </>}
             <div id="song-box" onClick={() => openInNewTab(`https://youtu.be/${correctSong.id}&t=${Math.floor(correctSong.offset)}`)}>
