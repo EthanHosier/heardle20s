@@ -1,2 +1,2 @@
 # heardle20s
-Available at www.heardle20s.com. Front-end only website built with React, based off of the popular Heardle game. Heardle 20s features the hit songs of the 2020s. This was created before I learned bootstrap, hence the CSS is written very inefficiently.
+Available at www.heardle20s.com. Front-end only website built with React, based off of the popular Heardle game. Heardle 20s features the hit songs of the 2020s. Very bad css but oh well
