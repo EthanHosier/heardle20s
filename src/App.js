@@ -16,7 +16,7 @@ const EMPTY_SCORES_OBJ =
         "X":0
     }
 
-//START DATE: 25/11/22 (have 19 queued including today)
+
 const NUM_MS_IN_DAY = 86400000;
 const STARTING_POINT = 1669248000000;
 const OPTS = {width: "0", height:"0"}
@@ -38,7 +38,7 @@ function App() {
     .then(r => r.text())
     .then(text => {
       let s = JSON.parse(text);
-      setCorrectSong(s[getCorrectSongIndex()])
+      setCorrectSong(s[getCorrectSongIndex() % s.length]) //so songs now loop
    });
 
     const lastStarted = new Date(localStorage.getItem("last-started"))
